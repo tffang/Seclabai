@@ -77,7 +77,7 @@ const logout = () => {
 <style scoped>
 .admin-layout {
   min-height: 100vh;
-  background: var(--gradient-primary);
+  background: transparent;
   color: var(--text-primary);
   display: flex;
   flex-direction: column;

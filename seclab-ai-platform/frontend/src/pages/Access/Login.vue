@@ -10,7 +10,7 @@ const router = useRouter()
 const loginForm = reactive({
   username: 'student',
   studentId: '2023001',
-  password: 'student123',
+  password: 'a123456',
   role: 'student',
   rememberMe: false
 })
@@ -53,7 +53,7 @@ const handleRoleChange = () => {
     loginForm.username = ''
     // 设置学生默认账号密码
     loginForm.studentId = '2023001'
-    loginForm.password = 'student123'
+    loginForm.password = 'a123456'
   } else {
     // 切换到教师/管理员角色，清空学号
     loginForm.studentId = ''
@@ -313,16 +313,29 @@ const handleThirdPartyLogin = (type) => {
   display: flex;
   height: 100vh;
   overflow: hidden;
+  background: transparent;
 }
 
 /* 左侧介绍区域 */
 .login-left {
   flex: 1;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
   padding: 4rem;
   color: white;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+
+/* 右侧登录表单区域 */
+.login-right {
+  width: 450px;
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
@@ -385,16 +398,6 @@ const handleThirdPartyLogin = (type) => {
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.5;
-}
-
-/* 右侧登录表单区域 */
-.login-right {
-  width: 450px;
-  background: #1e293b;
-  padding: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .login-form-container {

@@ -304,12 +304,14 @@ const toLogin = () => {
   display: flex;
   height: 100vh;
   overflow: hidden;
+  background: transparent;
 }
 
 /* 左侧介绍区域 */
 .register-left {
   flex: 1;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
   padding: 4rem;
   color: white;
   display: flex;
@@ -381,7 +383,8 @@ const toLogin = () => {
 /* 右侧注册表单区域 */
 .register-right {
   width: 450px;
-  background: #1e293b;
+  background: rgba(30, 41, 59, 0.95);
+  backdrop-filter: blur(10px);
   padding: 2rem;
   display: flex;
   align-items: center;

@@ -95,7 +95,7 @@ const logout = () => {
 <style scoped>
 .student-layout {
   min-height: 100vh;
-  background: var(--gradient-primary);
+  background: transparent;
   color: var(--text-primary);
   display: flex;
   flex-direction: column;
