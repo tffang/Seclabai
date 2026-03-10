@@ -1,0 +1,193 @@
+<template>
+  <div class="teacher-layout">
+    <!-- 顶部导航栏 -->
+    <header class="top-nav">
+      <div class="nav-left">
+        <h1 class="logo">Sec Lab <span class="teacher-badge">教师端</span></h1>
+      </div>
+      <div class="nav-center">
+        <el-menu
+          :default-active="activeNav"
+          class="nav-menu"
+          mode="horizontal"
+          background-color="transparent"
+          text-color="#a1a1aa"
+          active-text-color="#409eff"
+          :router="true"
+          :ellipsis="false"
+        >
+          <el-menu-item index="/teacher/courses">
+            <template #title>
+              <span class="menu-text">课程管理</span>
+            </template>
+          </el-menu-item>
+          <el-menu-item index="/teacher/experiments">
+            <template #title>
+              <span class="menu-text">实验管理</span>
+            </template>
+          </el-menu-item>
+          <el-menu-item index="/teacher/students">
+            <template #title>
+              <span class="menu-text">学生管理</span>
+            </template>
+          </el-menu-item>
+        </el-menu>
+      </div>
+      <div class="nav-right">
+        <el-button link icon="el-icon-user" @click="$router.push('/teacher/profile')">
+          个人中心
+        </el-button>
+        <el-button link icon="el-icon-switch-button" @click="logout">
+          退出登录
+        </el-button>
+      </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+      <slot></slot>
+    </main>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+
+const route = useRoute()
+const router = useRouter()
+
+// 计算当前激活的导航项
+const activeNav = computed(() => {
+  return route.path
+})
+
+// 退出登录
+const logout = () => {
+  // 移除本地存储的token和用户信息
+  localStorage.removeItem('token')
+  localStorage.removeItem('userInfo')
+  // 跳转到登录页面
+  router.push('/')
+}
+</script>
+
+<style scoped>
+.teacher-layout {
+  min-height: 100vh;
+  background: var(--gradient-primary);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.teacher-badge {
+  background: rgba(64, 158, 255, 0.2);
+  color: var(--primary-color);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--primary-color);
+}
+
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-menu {
+  border-bottom: none;
+}
+
+.menu-text {
+  font-size: 0.95rem;
+}
+
+.nav-right {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-right .el-button {
+  font-size: 0.9rem;
+  border: none;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .top-nav {
+    padding: 0.8rem 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-center {
+    display: flex;
+    width: 100%;
+    order: 3;
+  }
+
+  .menu-text {
+    font-size: 0.85rem;
+  }
+
+  .nav-right .el-button {
+    font-size: 0.8rem;
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-menu {
+    padding: 0;
+  }
+
+  .menu-text {
+    font-size: 0.8rem;
+  }
+  
+  .el-menu-item {
+    padding: 0 8px !important;
+  }
+}
+</style>
