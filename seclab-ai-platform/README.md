@@ -144,7 +144,27 @@ seclab-ai-platform
 * Node.js >= 14.0.0
 * MySQL >= 5.7.0
 
-## 后端启动
+## 快速启动（推荐）
+
+### 使用启动脚本（Windows）
+
+1. 双击运行 `start.bat` 文件（Windows批处理文件）
+   或
+   右键点击 `start.ps1` 文件，选择 "使用PowerShell运行"（PowerShell脚本）
+
+2. 脚本将自动：
+   - 检查Node.js安装
+   - 安装前端和后端依赖
+   - 启动后端服务
+   - 启动前端开发服务器
+
+3. 服务启动后：
+   - 前端服务将在 http://localhost:3000 或 http://localhost:3001（如果3000端口被占用）
+   - 后端服务将在 http://localhost:8080
+
+## 手动启动
+
+### 后端启动
 
 1. 进入 backend 目录
 2. 安装依赖：
@@ -154,11 +174,11 @@ seclab-ai-platform
 3. 配置数据库信息（在 db-config.js 文件中）
 4. 启动后端服务：
    ```bash
-   node server.js
+   npm start
    ```
 5. 后端服务将运行在 http://localhost:8080
 
-## 前端启动
+### 前端启动
 
 1. 进入 frontend 目录
 2. 安装依赖：
